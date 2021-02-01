@@ -4,7 +4,7 @@ const n = 10;
 
 const giveRand = (callback) => callback(Math.random());
 
-const summa = (a, b) => a + b;
+const sum = (a, b) => a + b;
 
 const doNTimes = (n, fn) => {
   while (n > 0) {
@@ -13,7 +13,7 @@ const doNTimes = (n, fn) => {
   }
 };
 
-const calculateAvg = (numbers) => numbers.reduce(summa) / numbers.length;
+const calculateAvg = (numbers) => numbers.reduce(sum) / numbers.length;
 
 const tenTimesGenerateRndNum = () => {
   const results = [];

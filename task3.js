@@ -6,29 +6,22 @@ const f = (argument, callback) => {
     callback(false);
     return;
   }
+  //   console.log("stopped");
   callback(true);
 };
 
 const array = [2, 3, 4, 5, 6, 7, 8];
 
-const doNTimes = (n, fn) => {
-  while (n > 0) {
-    fn();
-    n--;
-  }
+const check = (arr) => {
+  arr.map((item) => {
+    f(item, truefalse);
+  });
 };
 
-function eachItem() {
-  for (let i = 0; i < array.length; i++) {
-    const item = array[i];
+const truefalse = (arg) => {
+  if (arg) return;
+};
 
-    console.log(item);
-    return item;
-  }
-}
+check(array, truefalse);
 
-function cons() {
-  return eachItem();
-}
-
-setInterval(eachItem, 3000);
+// stop part ?
