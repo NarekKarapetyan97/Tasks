@@ -24,4 +24,4 @@ const truefalse = (arg) => {
 
 check(array, truefalse);
 
-// stop part ?
+// stop part ? forEach(){breake}

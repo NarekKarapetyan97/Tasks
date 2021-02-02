@@ -1,41 +1,33 @@
 // b) Write your own implementation of Promise.all
 
-// First promise returns an array
-const getUsers = () => {
+Promise.all = function promiseAllIterative(values) {
   return new Promise((resolve, reject) => {
-    return setTimeout(
-      () => resolve([{ id: "jon" }, { id: "andrey" }, { id: "tania" }]),
-      600
-    );
+    let results = [];
+    let completed = 0;
+
+    values.forEach((value, index) => {
+      Promise.resolve(value)
+        .then((result) => {
+          results[index] = result;
+          completed += 1;
+
+          if (completed == values.length) {
+            resolve(results);
+          }
+        })
+        .catch((err) => reject(err));
+    });
   });
 };
 
-// Second promise relies on the resulting array of first promise
-const getIdFromUser = (user) => {
-  return new Promise((resolve, reject) => {
-    return setTimeout(() => resolve(user.id), 500);
-  });
-};
+// Finded From internet
 
-// Third promise relies on the result of the second promise
-const capitalizeIds = (id) => {
-  return new Promise((resolve, reject) => {
-    return setTimeout(() => resolve(id.toUpperCase()), 200);
-  });
-};
-
-const runAsyncFunctions = async () => {
-  const users = await getUsers();
-
-  for (let user of users) {
-    const userId = await getIdFromUser(user);
-    console.log(userId);
-
-    const capitalizedId = await capitalizeIds(userId);
-    console.log(capitalizedId);
-  }
-
-  console.log(users);
-};
-
-runAsyncFunctions();
+// Promise.all = function promiseAllReduce(values) {
+//   return values.reduce((accumulator, value) => {
+//       return accumulator.then(results => {
+//           return Promise.resolve(value).then(result => {
+//               return [...results, result];
+//           });
+//       });
+//   }, Promise.resolve([]));
+// }
