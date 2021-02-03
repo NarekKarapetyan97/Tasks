@@ -9,14 +9,26 @@ const giveTrueIf4Async = (arg, callback) => {
 };
 const array = [2, 3, 4, 5, 6, 7, 8];
 
-const everyElement = (arr) => {
-  arr.map((item) => {
-    giveTrueIf4Async(item, truefalse);
-  });
-};
-
 const truefalse = (arg) => {
-  if (arg) return;
+  console.log(arg);
+  return arg;
 };
 
-everyElement(array);
+array.forEach((item) => {
+  giveTrueIf4Async(item, truefalse);
+  if (truefalse == true) {
+    return false;
+  }
+});
+
+// const everyElement = (arr) => {
+//   arr.map((item) => {
+//     giveTrueIf4Async(item, truefalse);
+//   });
+// };
+
+// const truefalse = (arg) => {
+//   if (arg) return;
+// };
+
+// everyElement(array);

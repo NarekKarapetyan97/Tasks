@@ -6,22 +6,28 @@ const f = (argument, callback) => {
     callback(false);
     return;
   }
-  //   console.log("stopped");
   callback(true);
 };
 
 const array = [2, 3, 4, 5, 6, 7, 8];
 
-const check = (arr) => {
-  arr.map((item) => {
-    f(item, truefalse);
-  });
-};
-
 const truefalse = (arg) => {
-  if (arg) return;
+  return arg;
 };
 
-check(array, truefalse);
+array.forEach((item) => {
+  f(item, truefalse);
+  if (truefalse == true) {
+    return false;
+  }
+});
 
-// stop part ? forEach(){breake}
+// const check = (arr) => {
+//   arr.map((item) => {
+//     f(item, truefalse);
+//   });
+// };
+
+// check(array, truefalse);
+
+// stop part ? forEach()

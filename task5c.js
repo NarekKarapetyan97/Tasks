@@ -1,4 +1,4 @@
-// c) Call function 'giveRandAsync' 10 times, one at a time with 20 second interval, and average the results// Call function 'giveRandAsync' 10 times, one at a time, and average the results
+// c) Call function 'giveRandAsync' 10 times, one at a time with 20 second interval, and average the results
 const giveRandAsync = (callback) => {
   const f = () => callback(Math.random());
   return new Promise((resolve) => {

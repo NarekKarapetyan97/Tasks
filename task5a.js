@@ -21,7 +21,7 @@ const resultPromise = new Promise((resolve) => {
   const pusher = (num) => results.push(num);
   resolve(doNTimes(n, () => giveRandAsync(pusher)));
   const fn = () => console.log(results);
-  setTimeout(fn, 15);
+  setTimeout(fn, 10);
 });
 
 Promise.all([giveRandAsync, resultPromise]);

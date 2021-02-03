@@ -1,16 +1,13 @@
 // a) Write your own implementation of Promise.map
 
+// just for test
 const functionWithPromise = (item) => {
   return item * 2;
 };
 
-const anAsyncFunction = async (item) => {
-  return functionWithPromise(item);
-};
-
 const getData = async () => {
   const list = [1, 2, 3, 4, 5];
-  return Promise.all(list.map((item) => anAsyncFunction(item)));
+  return Promise.all(list.map((item) => functionWithPromise(item)));
 };
 
 getData().then((data) => {

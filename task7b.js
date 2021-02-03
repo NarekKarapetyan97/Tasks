@@ -1,6 +1,7 @@
 // b) Write your own implementation of Promise.all
 
-Promise.all = function promiseAllIterative(values) {
+// Not so good solution
+const PromiseAll = function promiseAllIterative(values) {
   return new Promise((resolve, reject) => {
     let results = [];
     let completed = 0;

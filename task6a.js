@@ -1,40 +1,108 @@
-// 6. Write an implementation of async.waterfall function
+// 6. a) Write an implementation of async.waterfall function
 
-function waterfall(arr, cb, result) {
-  var fns = arr.slice(1);
+function helperForParallel(arr, callback, result) {
+  const fns = arr.slice(1);
   if (!arr[0]) {
-    process.nextTick(function () {
-      cb(null, result);
-    });
+    callback(...result);
     return;
   }
-  var first = arr[0];
-  first(function (err, data) {
-    if (err) return cb(err);
-
-    waterfall(fns, cb, data);
+  const first = arr[0];
+  first(...result, (err, ...data) => {
+    if (err) {
+      return callback(err);
+    }
+    helperForParallel(fns, callback, data);
   });
 }
-waterfall(
+
+function parallel(arr, callback) {
+  helperForParallel(arr, callback, []);
+}
+
+// function waterfall(arr, cb, result) {
+//   const fns = arr.slice(1);
+//   if (!arr[0]) {
+//     cb(null, result);
+//     return;
+//   }
+//   const first = arr[0];
+//   first(function (err, data) {
+//     if (err) return cb(err);
+
+//     waterfall(fns, cb, data);
+//   });
+// }
+
+///////////////////////////////////// ex.
+parallel(
   [
-    function (cb) {
-      console.log(1);
-      setTimeout(cb, 1000);
+    function (doneCallback) {
+      setTimeout(function () {
+        console.log("FIRST");
+        doneCallback(null, "b");
+      }, 100);
     },
-    function (cb) {
-      console.log(2);
-      setTimeout(cb, 1000);
+    function (param, doneCallback) {
+      setTimeout(function () {
+        console.log("SECOND", param);
+        doneCallback(null, "c", "d");
+      }, 50);
     },
-    function (cb) {
-      console.log(3);
-      setTimeout(cb, 1000);
-    },
-    function (cb) {
-      console.log(4);
-      setTimeout(cb, 1000);
+    function (param1, param2, doneCallback) {
+      setTimeout(function () {
+        console.log("THIRD", param1, param2);
+        doneCallback(null, "e");
+      }, 10);
     },
   ],
-  function () {
-    console.log("Done");
+  function (err, result) {
+    console.log("err", err);
+    console.log("result", result);
   }
 );
+
+// const waterfall = (array, callback, result) => {
+//   array.forEach((item) => {
+//     callback(item);
+//   });
+//   const first = array[0];
+//   first(function (err, data) {
+//     if (err) return callback(err);
+
+//     waterfall(functions, callback, data);
+//   });
+// };
+
+// const run = (arg) => {
+//   return new Promise((resolve, rejects) => {
+//     if (arg === true) {
+//       resolve(arg);
+//     } else {
+//       rejects(arg);
+//     }
+//   });
+// };
+
+// waterfall(
+//   [
+//     function (cb) {
+//       console.log(1);
+//       setTimeout(cb, 1000);
+//     },
+//     function (cb) {
+//       console.log(2);
+//       setTimeout(cb, 1000);
+//     },
+//     function (cb) {
+//       console.log(3);
+//       setTimeout(cb, 1000);
+//     },
+//     function (cb) {
+//       console.log(4);
+//       setTimeout(cb, 1000);
+//     },
+//   ],
+//   function () {
+//     console.log("Donew");
+//   }
+// );

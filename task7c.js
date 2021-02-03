@@ -5,16 +5,16 @@ async function promiseEach(arr, fn) {
 }
 
 async function run() {
-  const array1 = [1, 4, 9, 16];
-  let map1 = await promiseEach(array1, console.log);
-  console.log(map1);
+  const array = [1, 4, 9, 16];
+  let map = await promiseEach(array, console.log);
+  console.log(map);
 }
 
 run();
 
-// why undefined ?
 // 1
 // 4
 // 9
 // 16
 // undefined
+// why undefined ?
