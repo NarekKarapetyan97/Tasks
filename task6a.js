@@ -19,20 +19,6 @@ function parallel(arr, callback) {
   helperForParallel(arr, callback, []);
 }
 
-// function waterfall(arr, cb, result) {
-//   const fns = arr.slice(1);
-//   if (!arr[0]) {
-//     cb(null, result);
-//     return;
-//   }
-//   const first = arr[0];
-//   first(function (err, data) {
-//     if (err) return cb(err);
-
-//     waterfall(fns, cb, data);
-//   });
-// }
-
 ///////////////////////////////////// ex.
 parallel(
   [
@@ -61,48 +47,17 @@ parallel(
   }
 );
 
-// const waterfall = (array, callback, result) => {
-//   array.forEach((item) => {
-//     callback(item);
-//   });
-//   const first = array[0];
-//   first(function (err, data) {
-//     if (err) return callback(err);
-
-//     waterfall(functions, callback, data);
-//   });
-// };
-
-// const run = (arg) => {
-//   return new Promise((resolve, rejects) => {
-//     if (arg === true) {
-//       resolve(arg);
-//     } else {
-//       rejects(arg);
-//     }
-//   });
-// };
-
-// waterfall(
-//   [
-//     function (cb) {
-//       console.log(1);
-//       setTimeout(cb, 1000);
-//     },
-//     function (cb) {
-//       console.log(2);
-//       setTimeout(cb, 1000);
-//     },
-//     function (cb) {
-//       console.log(3);
-//       setTimeout(cb, 1000);
-//     },
-//     function (cb) {
-//       console.log(4);
-//       setTimeout(cb, 1000);
-//     },
-//   ],
-//   function () {
-//     console.log("Donew");
+// from internet
+// function waterfall(arr, cb, result) {
+//   const fns = arr.slice(1);
+//   if (!arr[0]) {
+//     cb(null, result);
+//     return;
 //   }
-// );
+//   const first = arr[0];
+//   first(function (err, data) {
+//     if (err) return cb(err);
+
+//     waterfall(fns, cb, data);
+//   });
+// }
