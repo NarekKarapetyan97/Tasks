@@ -1,6 +1,6 @@
 // 6. b) Write an implementation of async.parallel function
 
-function waterfall(arr, cb) {
+function parallel(arr, cb) {
   // const fns = arr.slice(1);
 
   const roots = () =>
@@ -10,14 +10,14 @@ function waterfall(arr, cb) {
   process.nextTick(setTimeout(roots, 20));
 
   // waterfall(fns, cb, data);
-  waterfall(roots, cb);
+  parallel(roots, cb);
   console.log(roots);
   return roots;
 }
 
 // foreach method for returning an array
 
-waterfall(
+parallel(
   [
     function (callback) {
       setTimeout(function () {

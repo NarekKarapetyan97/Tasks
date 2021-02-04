@@ -1,6 +1,6 @@
 // 6. a) Write an implementation of async.waterfall function
 
-function helperForParallel(arr, callback, result) {
+function helperForWaterfall(arr, callback, result) {
   const fns = arr.slice(1);
   if (!arr[0]) {
     callback(...result);
@@ -11,12 +11,12 @@ function helperForParallel(arr, callback, result) {
     if (err) {
       return callback(err);
     }
-    helperForParallel(fns, callback, data);
+    helperForWaterfall(fns, callback, data);
   });
 }
 
 function parallel(arr, callback) {
-  helperForParallel(arr, callback, []);
+  helperForWaterfall(arr, callback, []);
 }
 
 ///////////////////////////////////// ex.
