@@ -15,6 +15,8 @@ const truefalse = (arg) => {
   return arg;
 };
 
+// How to stop without return?
+
 array.forEach((item) => {
   f(item, truefalse);
   if (truefalse == true) {

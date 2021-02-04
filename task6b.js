@@ -1,18 +1,19 @@
 // 6. b) Write an implementation of async.parallel function
 
-function parallel(arr, cb) {
+async function parallel(arr, cb) {
   // const fns = arr.slice(1);
-
-  const roots = () =>
+  // arr.push(fns);
+  const f = () =>
     arr.map(function (num) {
+      console.log(44);
       return num;
     });
-  process.nextTick(setTimeout(roots, 20));
+  setTimeout(f, 20);
 
   // waterfall(fns, cb, data);
-  parallel(roots, cb);
-  console.log(roots);
-  return roots;
+  parallel(f, cb).catch();
+  console.log(f);
+  return Promise.all([f]);
 }
 
 // foreach method for returning an array

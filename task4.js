@@ -14,6 +14,8 @@ const truefalse = (arg) => {
   return arg;
 };
 
+// How to stop without return?
+
 array.forEach((item) => {
   giveTrueIf4Async(item, truefalse);
   if (truefalse == true) {
