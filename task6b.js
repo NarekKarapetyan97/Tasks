@@ -7,7 +7,7 @@ function waterfall(arr, cb) {
     arr.map(function (num) {
       return num;
     });
-  setTimeout(roots, 20);
+  process.nextTick(setTimeout(roots, 20));
 
   // waterfall(fns, cb, data);
   waterfall(roots, cb);
