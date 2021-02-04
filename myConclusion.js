@@ -93,7 +93,7 @@ const promise5 = function () {
 
 async function AsyncAwait() {
   const promise = await promise5();
-  console.log(promise);
+  showItem(promise);
 }
 
 AsyncAwait();
