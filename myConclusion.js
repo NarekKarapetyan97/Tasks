@@ -32,12 +32,10 @@ operetations();
 
 function success() {
   console.log("promise resolved");
-  return;
 }
 
 const showItem = (item) => {
   console.log(item);
-  return;
 };
 
 const promise1 = function () {
