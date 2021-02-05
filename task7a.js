@@ -5,7 +5,7 @@ const functionWithPromise = (item) => {
   return item * 2;
 };
 
-const getData = async () => {
+const getData = () => {
   const list = [1, 2, 3, 4, 5];
   return Promise.all(list.map((item) => functionWithPromise(item)));
 };

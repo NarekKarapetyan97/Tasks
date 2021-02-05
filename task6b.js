@@ -1,6 +1,6 @@
 // 6. b) Write an implementation of async.parallel function
 
-async function parallel(arr, cb) {
+function parallel(arr, cb) {
   // const fns = arr.slice(1);
   // arr.push(fns);
   const f = () =>
