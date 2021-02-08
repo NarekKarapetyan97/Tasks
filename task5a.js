@@ -2,26 +2,23 @@
 
 const giveRandAsync = (callback) => {
   const f = () => callback(Math.random());
-  return new Promise((resolve) => {
-    resolve(setTimeout(f, 10));
-  });
+  setTimeout(f, 2000);
 };
 
-const n = 10;
+const calc = () => {
+  const n = 10;
+  const results = [];
+  let i = null;
+  while (i < n) {
+    giveRandAsync((num) => {
+      results.push(num);
+      // if (results.length === n) {
+      console.log(results);
+      // }
+    });
 
-const doNTimes = (a, fn) => {
-  while (a > 0) {
-    fn();
-    a--;
+    i++;
   }
 };
 
-const resultPromise = new Promise((resolve) => {
-  const results = [];
-  const pusher = (num) => results.push(num);
-  resolve(doNTimes(n, () => giveRandAsync(pusher)));
-  const fn = () => console.log(results);
-  setTimeout(fn, 10);
-});
-
-Promise.all([giveRandAsync, resultPromise]);
+calc();

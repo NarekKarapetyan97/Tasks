@@ -1,4 +1,5 @@
 // d) Call function 'giveRandAsync' 10 times, all at once, and average the results
+
 const giveRandAsync = (callback) => {
   const f = () => callback(Math.random());
   return new Promise((resolve) => {
@@ -21,9 +22,9 @@ const doNTimes = (a, fn) => {
 const resultPromise = new Promise((resolve) => {
   const results = [];
   const pusher = (num) => results.push(num);
-  resolve(doNTimes(n, () => giveRandAsync(pusher)));
+  doNTimes(n, () => resolve(giveRandAsync(pusher)));
   const fn = () => console.log(calculateAvg(results));
-  setTimeout(fn, 15);
+  setTimeout(fn, 10);
 });
 
 Promise.all([giveRandAsync, resultPromise]);
