@@ -4,24 +4,30 @@ const giveRandAsync = (callback) => {
   setTimeout(f, Math.random() * 10);
 };
 
+const show = (item) => console.log(item);
 const sum = (a, b) => a + b;
 const calculateAvg = (numbers) => numbers.reduce(sum) / numbers.length;
 
 const calc = () => {
   const n = 10;
-  const results = [];
-  let i = null;
-  while (i < 10) {
-    const f = () =>
-      giveRandAsync((num) => {
-        results.push(num);
 
-        const number = calculateAvg(results);
-        console.log(number);
-      });
-    setInterval(f, 5000);
-    i++;
-  }
+  const results = [];
+
+  const countdown = (a) => {
+    if (a == 0) {
+      return;
+    }
+    giveRandAsync((num) => {
+      results.push(num);
+      const avrg = calculateAvg(results);
+      show(avrg);
+    });
+    const fn = () => countdown(a - 1);
+    setTimeout(fn, 1000);
+  };
+
+  countdown(n);
 };
 
 calc();
+//all in one time??

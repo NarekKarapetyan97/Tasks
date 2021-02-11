@@ -1,41 +1,28 @@
 // 6. b) Write an implementation of async.parallel function
 
-function parallel(arr, cb) {
-  // const fns = arr.slice(1);
-  // arr.push(fns);
-  const f = () =>
-    arr.map(function (num) {
-      console.log(44);
-      return num;
-    });
-  setTimeout(f, 20);
+const testFunction = (a) => {
+  return new Promise((resolve) => {
+    resolve(pushArray(a));
+    console.log(a);
+  });
+};
 
-  // waterfall(fns, cb, data);
-  parallel(f, cb).catch();
-  console.log(f);
-  return Promise.all([f]);
+function f() {
+  console.log("hello");
 }
 
-// foreach method for returning an array
+const reqs = ["world", "jjssss0", "ls;ls"];
 
-parallel(
-  [
-    function (callback) {
-      setTimeout(function () {
-        console.log("Task One");
-        callback(null, 1);
-      }, 200);
-    },
-    function (callback) {
-      setTimeout(function () {
-        console.log("Task Two");
-        callback(null, 2);
-      }, 100);
-    },
-  ],
-  function (err, results) {
-    console.log(results);
-    // the results array will equal [1, 2] even though
-    // the second function had a shorter timeout.
-  }
-);
+const pushArray = (foo) => {
+  reqs.push(foo);
+};
+
+const fn = pushArray(f);
+
+const result = reqs.reduce((prevPr, currArg) => {
+  return prevPr.then((acc) =>
+    testFunction(currArg).then((resp) => [...acc, resp])
+  );
+}, Promise.resolve([]));
+
+result.then(console.log);

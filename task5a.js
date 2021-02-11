@@ -1,24 +1,28 @@
-// 5. a) Call function 'giveRandAsync' 10 times and gather results in an array
+// 5. a) Call function 'giveRandAsync' 10 times and gather results in an array //complete
 
 const giveRandAsync = (callback) => {
   const f = () => callback(Math.random());
-  setTimeout(f, 2000);
+  setTimeout(f, Math.random() * 10);
 };
 
 const calc = () => {
   const n = 10;
+
   const results = [];
-  let i = null;
-  while (i < n) {
+
+  const countdown = (a) => {
+    if (a == 0) {
+      console.log(results);
+      return;
+    }
+
     giveRandAsync((num) => {
       results.push(num);
-      // if (results.length === n) {
-      console.log(results);
-      // }
+      countdown(a - 1);
     });
+  };
 
-    i++;
-  }
+  countdown(n);
 };
 
 calc();

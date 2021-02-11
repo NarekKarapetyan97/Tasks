@@ -19,7 +19,7 @@ function parallel(arr, callback) {
   helperForWaterfall(arr, callback, []);
 }
 
-///////////////////////////////////// ex.
+///////////////////////////////////// TEST
 parallel(
   [
     function (doneCallback) {
